@@ -8,7 +8,8 @@ import 'package:dart_harmony/chord.dart';
 void main(List<String> arguments) {
   //print(Natural.naturals().map((e) => e.name));
 
-  var n = Note(natural: Natural.C, accidentals: Accidental.Natural, octave: 4);
+  var n =
+      Note(note: Natural.C, accidentals: Accidental.Natural, octave: Octave.C4);
 
   print("5:\t\t${Chord.PowerChord.notes(n).map((e) => e.name())}");
   print("");
@@ -20,7 +21,8 @@ void main(List<String> arguments) {
   print("");
   print("sus2:\t\t${Chord.SusSecond.notes(n).map((e) => e.name())}");
   print("sus4:\t\t${Chord.SusFourth.notes(n).map((e) => e.name())}");
-  print("sus2sus4:\t\t${Chord.SusSecondSusFourth.notes(n).map((e) => e.name())}");
+  print(
+      "sus2sus4:\t\t${Chord.SusSecondSusFourth.notes(n).map((e) => e.name())}");
   print("");
 
   print("Major6:\t\t${Chord.MajorSixth.notes(n).map((e) => e.name())}");
@@ -34,26 +36,34 @@ void main(List<String> arguments) {
   print("m7:\t\t${Chord.MinorSeventh.notes(n).map((e) => e.name())}");
   print("min(M7):\t${Chord.MinorMajorSeventh.notes(n).map((e) => e.name())}");
   print("7(#5):\t\t${Chord.AugmentedSeventh.notes(n).map((e) => e.name())}");
-  print("M7(#5):\t\t${Chord.AugmentedMajorSeventh.notes(n).map((e) => e.name())}");
-  print("m7(b5):\t\t${Chord.HalfDiminishedSeventh.notes(n).map((e) => e.name())}");
+  print(
+      "M7(#5):\t\t${Chord.AugmentedMajorSeventh.notes(n).map((e) => e.name())}");
+  print(
+      "m7(b5):\t\t${Chord.HalfDiminishedSeventh.notes(n).map((e) => e.name())}");
   print("7dim:\t\t${Chord.DiminishedSeventh.notes(n).map((e) => e.name())}");
-  print("7(b5):\t\t${Chord.DominantSeventhFlatFive.notes(n).map((e) => e.name())}");
-  
-  print("7sus2:\t\t${Chord.DominantSeventhSusSecond.notes(n).map((e) => e.name())}");
-  print("7sus4:\t\t${Chord.DominantSeventhSusFourth.notes(n).map((e) => e.name())}");
-  print("7sus2sus4:\t${Chord.DominantSeventhSusSecondSusFourth.notes(n).map((e) => e.name())}");
-  print("M7sus2:\t\t${Chord.MajorSeventhSusSecond.notes(n).map((e) => e.name())}");
-  print("M7sus4:\t\t${Chord.MajorSeventhSusFourth.notes(n).map((e) => e.name())}");
-  print("M7sus2sus4:\t${Chord.MajorSeventhSusSecondSusFourth.notes(n).map((e) => e.name())}");
+  print(
+      "7(b5):\t\t${Chord.DominantSeventhFlatFive.notes(n).map((e) => e.name())}");
 
- 
+  print(
+      "7sus2:\t\t${Chord.DominantSeventhSusSecond.notes(n).map((e) => e.name())}");
+  print(
+      "7sus4:\t\t${Chord.DominantSeventhSusFourth.notes(n).map((e) => e.name())}");
+  print(
+      "7sus2sus4:\t${Chord.DominantSeventhSusSecondSusFourth.notes(n).map((e) => e.name())}");
+  print(
+      "M7sus2:\t\t${Chord.MajorSeventhSusSecond.notes(n).map((e) => e.name())}");
+  print(
+      "M7sus4:\t\t${Chord.MajorSeventhSusFourth.notes(n).map((e) => e.name())}");
+  print(
+      "M7sus2sus4:\t${Chord.MajorSeventhSusSecondSusFourth.notes(n).map((e) => e.name())}");
+
   //print("${n.interval(Interval.MajorSeventh).name()}");
   //print("${n.interval(Interval.AugmentedSeventh).name()}");
   //print("${n.interval(Interval.DiminishedOctave).name()}");
   //for (var i = 0; i < Interval.intervals().length; i++) {
   //  print("${Interval.intervals()[i].name()}: ${n.interval(Interval.intervals()[i]).name()}");
   //}
-  
+
   //var m = Note(natural: Natural.D, accidentals: Accidental.Natural, octave: 4);
   //print(n.name());
   //print(n.semitone());

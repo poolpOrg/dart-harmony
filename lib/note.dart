@@ -1,40 +1,62 @@
 import 'natural.dart';
 import 'interval.dart';
 
-class Octave {
-  final int value;
-  Octave({required this.value});
+class Accidental {
+  // ignore: constant_identifier_names
+  static const int Natural = 0;
+
+  // ignore: constant_identifier_names
+  static const int Flat = -1;
+
+  // ignore: constant_identifier_names
+  static const int Sharp = 1;
 }
 
-class Accidental {
-  final int value;
-  static int Natural = 0;
-  static int Flat = -1;
-  static int Sharp = 1;
+class Octave {
+  // ignore: constant_identifier_names
+  static const int C0 = 0;
 
-  Accidental({required this.value});
+  // ignore: constant_identifier_names
+  static const int C1 = 1;
+
+  // ignore: constant_identifier_names
+  static const int C2 = 2;
+
+  // ignore: constant_identifier_names
+  static const int C3 = 3;
+
+  // ignore: constant_identifier_names
+  static const int C4 = 4;
+
+  // ignore: constant_identifier_names
+  static const int C5 = 5;
+
+  // ignore: constant_identifier_names
+  static const int C6 = 6;
+
+  // ignore: constant_identifier_names
+  static const int C7 = 7;
 }
 
 class Note {
-  final Natural natural;
+  final Natural note;
   final int accidentals;
   final int octave;
 
-  Note(
-      {required this.natural, required this.accidentals, required this.octave});
+  Note({required this.note, required this.accidentals, required this.octave});
 
   String name() {
     if (accidentals == 0) {
-      return natural.name + octave.toString();
+      return note.name() + octave.toString();
     } else if (accidentals < 0) {
-      return natural.name + ("♭" * -accidentals) + octave.toString();
+      return note.name() + ("♭" * -accidentals) + octave.toString();
     } else {
-      return natural.name + ("♯" * accidentals) + octave.toString();
+      return note.name() + ("♯" * accidentals) + octave.toString();
     }
   }
 
   int semitone() {
-    return natural.semitone + accidentals;
+    return note.semitone() + accidentals;
   }
 
   bool enharmonic(Note target) {
@@ -45,35 +67,36 @@ class Note {
     var targetInterval = target;
 
     // special case
-    if (targetInterval.position == natural.position && targetInterval.semitone % 12 == 0) {
+    if (targetInterval.position == note.position() &&
+        targetInterval.semitone % 12 == 0) {
       return Note(
-          natural: natural,
+          note: note,
           accidentals: accidentals,
           octave: octave + targetInterval.semitone ~/ 12);
     }
 
     var targetNatural = Natural.naturals()[
-        (natural.position + targetInterval.position) %
+        (note.position() + targetInterval.position) %
             Natural.naturals().length];
-    var sourceSemitone = natural.semitone + accidentals;
+    var sourceSemitone = note.semitone() + accidentals;
 
-  // . print(targetNatural.position);
-  //  print(sourceSemitone);
+    // . print(targetNatural.position);
+    //  print(sourceSemitone);
 
     var targetOctave = octave + targetInterval.semitone ~/ 12;
-    if (targetNatural.position < natural.position) {
+    if (targetNatural.position() < note.position()) {
       targetOctave++;
     }
 
-    var targetSemitone = targetNatural.semitone + accidentals;
+    var targetSemitone = targetNatural.semitone() + accidentals;
     var targetAccidentals = accidentals;
-    if (targetInterval.semitone < natural.semitone) {
+    if (targetInterval.semitone < note.semitone()) {
       targetSemitone += 12;
     }
 
     var targetDistance =
         targetSemitone - (targetInterval.semitone % 12 + sourceSemitone);
-    
+
     //print(targetDistance);
     targetAccidentals -= targetDistance;
     //print(targetAccidentals);
@@ -87,7 +110,7 @@ class Note {
     }
 
     return Note(
-        natural: targetNatural,
+        note: targetNatural,
         accidentals: targetAccidentals,
         octave: targetOctave);
   }
@@ -103,7 +126,7 @@ class Note {
       destination = this;
     }
 
-    var targetPosition = destination.natural.position - origin.natural.position;
+    var targetPosition = destination.note.position() - origin.note.position();
     var targetSemitone = destination.semitone() - origin.semitone();
 
     if (target.octave > octave) {
