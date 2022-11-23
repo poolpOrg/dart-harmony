@@ -1,163 +1,199 @@
+// ignore_for_file: constant_identifier_names
+
 import 'note.dart';
 import 'interval.dart';
 
-const PowerChord = [Interval.PerfectUnison, Interval.PerfectFifth];
+enum ChordStructure {
+  PowerChord,
+  Major,
+  Minor,
+  Diminished,
+  Augmented,
+  MajorFlatFifth,
+  SusSecond,
+  SusFourth,
+  SusSecondSusFourth,
+  MajorSixth,
+  MinorSixth,
+  MajorFlatSixth,
+  MinorFlatSixth,
+  DominantSeventh,
+  MajorSeventh,
+  MinorMajorSeventh,
+  MinorSeventh,
+  AugmentedMajorSeventh,
+  AugmentedSeventh,
+  HalfDiminishedSeventh,
+  DiminishedSeventh,
+  DominantSeventhFlatFive,
+  DominantSeventhSusSecond,
+  DominantSeventhSusFourth,
+  DominantSeventhSusSecondSusFourth,
+  MajorSeventhSusSecond,
+  MajorSeventhSusFourth,
+  MajorSeventhSusSecondSusFourth,
+}
 
-const Major = [
+const List<Interval> PowerChord = [
+  Interval.PerfectUnison,
+  Interval.PerfectFifth
+];
+
+const List<Interval> Major = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.PerfectFifth,
 ];
 
-const Minor = [
+const List<Interval> Minor = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.PerfectFifth,
 ];
 
-const Diminished = [
+const List<Interval> Diminished = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.DiminishedFifth,
 ];
 
-const Augmented = [
+const List<Interval> Augmented = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.AugmentedFifth,
 ];
 
-const MajorFlatFifth = [
+const List<Interval> MajorFlatFifth = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.DiminishedFifth,
 ];
 
-const SusSecond = [
+const List<Interval> SusSecond = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
   Interval.PerfectFifth,
 ];
 
-const SusFourth = [
+const List<Interval> SusFourth = [
   Interval.PerfectUnison,
   Interval.PerfectFourth,
   Interval.PerfectFifth,
 ];
 
-const SusSecondSusFourth = [
+const List<Interval> SusSecondSusFourth = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
   Interval.PerfectFourth,
   Interval.PerfectFifth,
 ];
 
-const MajorSixth = [
+const List<Interval> MajorSixth = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.PerfectFifth,
   Interval.MajorSixth
 ];
 
-const MinorSixth = [
+const List<Interval> MinorSixth = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.PerfectFifth,
   Interval.MajorSixth
 ];
 
-const MajorFlatSixth = [
+const List<Interval> MajorFlatSixth = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.PerfectFifth,
   Interval.MinorSixth
 ];
 
-const MinorFlatSixth = [
+const List<Interval> MinorFlatSixth = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.PerfectFifth,
   Interval.MinorSixth
 ];
 
-const DominantSeventh = [
+const List<Interval> DominantSeventh = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.PerfectFifth,
   Interval.MinorSeventh,
 ];
 
-const MajorSeventh = [
+const List<Interval> MajorSeventh = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.PerfectFifth,
   Interval.MajorSeventh,
 ];
 
-const MinorMajorSeventh = [
+const List<Interval> MinorMajorSeventh = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.PerfectFifth,
   Interval.MajorSeventh,
 ];
 
-const MinorSeventh = [
+const List<Interval> MinorSeventh = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.PerfectFifth,
   Interval.MinorSeventh,
 ];
 
-const AugmentedMajorSeventh = [
+const List<Interval> AugmentedMajorSeventh = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.AugmentedFifth,
   Interval.MajorSeventh,
 ];
 
-const AugmentedSeventh = [
+const List<Interval> AugmentedSeventh = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.AugmentedFifth,
   Interval.MinorSeventh,
 ];
 
-const HalfDiminishedSeventh = [
+const List<Interval> HalfDiminishedSeventh = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.DiminishedFifth,
   Interval.MinorSeventh,
 ];
 
-const DiminishedSeventh = [
+const List<Interval> DiminishedSeventh = [
   Interval.PerfectUnison,
   Interval.MinorThird,
   Interval.DiminishedFifth,
   Interval.DiminishedSeventh,
 ];
 
-const DominantSeventhFlatFive = [
+const List<Interval> DominantSeventhFlatFive = [
   Interval.PerfectUnison,
   Interval.MajorThird,
   Interval.DiminishedFifth,
   Interval.MinorSeventh,
 ];
 
-const DominantSeventhSusSecond = [
+const List<Interval> DominantSeventhSusSecond = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
   Interval.PerfectFifth,
   Interval.MinorSeventh,
 ];
 
-const DominantSeventhSusFourth = [
+const List<Interval> DominantSeventhSusFourth = [
   Interval.PerfectUnison,
   Interval.PerfectFourth,
   Interval.PerfectFifth,
   Interval.MinorSeventh,
 ];
 
-const DominantSeventhSusSecondSusFourth = [
+const List<Interval> DominantSeventhSusSecondSusFourth = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
   Interval.PerfectFourth,
@@ -165,21 +201,21 @@ const DominantSeventhSusSecondSusFourth = [
   Interval.MinorSeventh,
 ];
 
-const MajorSeventhSusSecond = [
+const List<Interval> MajorSeventhSusSecond = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
   Interval.PerfectFifth,
   Interval.MajorSeventh,
 ];
 
-const MajorSeventhSusFourth = [
+const List<Interval> MajorSeventhSusFourth = [
   Interval.PerfectUnison,
   Interval.PerfectFourth,
   Interval.PerfectFifth,
   Interval.MajorSeventh,
 ];
 
-const MajorSeventhSusSecondSusFourth = [
+const List<Interval> MajorSeventhSusSecondSusFourth = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
   Interval.PerfectFourth,
@@ -187,106 +223,169 @@ const MajorSeventhSusSecondSusFourth = [
   Interval.MajorSeventh,
 ];
 
-class Chord {
-  final Note note;
-  final List<Interval> structure;
-  final Interval inversion;
+extension ChordStructureMethods on ChordStructure {
+  List<Interval> get intervals {
+    switch (this) {
+      case ChordStructure.PowerChord:
+        return PowerChord;
+      case ChordStructure.Minor:
+        return Minor;
+      case ChordStructure.Major:
+        return Major;
+      case ChordStructure.Diminished:
+        return Diminished;
+      case ChordStructure.Augmented:
+        return Augmented;
+      case ChordStructure.MajorFlatFifth:
+        return MajorFlatFifth;
+      case ChordStructure.SusSecond:
+        return SusSecond;
+      case ChordStructure.SusFourth:
+        return SusFourth;
+      case ChordStructure.SusSecondSusFourth:
+        return SusSecondSusFourth;
+      case ChordStructure.MajorSixth:
+        return MajorSixth;
+      case ChordStructure.MinorSixth:
+        return MinorSixth;
+      case ChordStructure.MajorFlatSixth:
+        return MajorFlatSixth;
+      case ChordStructure.MinorFlatSixth:
+        return MinorFlatSixth;
+      case ChordStructure.DominantSeventh:
+        return DominantSeventh;
+      case ChordStructure.MajorSeventh:
+        return MajorSeventh;
+      case ChordStructure.MinorMajorSeventh:
+        return MinorMajorSeventh;
+      case ChordStructure.MinorSeventh:
+        return MinorSeventh;
+      case ChordStructure.AugmentedMajorSeventh:
+        return AugmentedMajorSeventh;
+      case ChordStructure.AugmentedSeventh:
+        return AugmentedSeventh;
+      case ChordStructure.HalfDiminishedSeventh:
+        return HalfDiminishedSeventh;
+      case ChordStructure.DiminishedSeventh:
+        return DiminishedSeventh;
+      case ChordStructure.DominantSeventhFlatFive:
+        return DominantSeventhFlatFive;
+      case ChordStructure.DominantSeventhSusSecond:
+        return DominantSeventhSusSecond;
+      case ChordStructure.DominantSeventhSusFourth:
+        return DominantSeventhSusFourth;
+      case ChordStructure.DominantSeventhSusSecondSusFourth:
+        return DominantSeventhSusSecondSusFourth;
+      case ChordStructure.MajorSeventhSusSecond:
+        return MajorSeventhSusSecond;
+      case ChordStructure.MajorSeventhSusFourth:
+        return MajorSeventhSusFourth;
+      case ChordStructure.MajorSeventhSusSecondSusFourth:
+        return MajorSeventhSusSecondSusFourth;
+    }
+  }
 
-  static String structureName(List<Interval> structure) {
-    switch (structure) {
-      case PowerChord:
+  String get name {
+    switch (this) {
+      case ChordStructure.PowerChord:
         return "5";
-      case Minor:
+      case ChordStructure.Minor:
         return "min";
-      case Major:
+      case ChordStructure.Major:
         return "";
-      case Diminished:
+      case ChordStructure.Diminished:
         return "dim";
-      case Augmented:
+      case ChordStructure.Augmented:
         return "aug";
-      case MajorFlatFifth:
+      case ChordStructure.MajorFlatFifth:
         return "(♭5)";
-      case SusSecond:
+      case ChordStructure.SusSecond:
         return "sus2";
-      case SusFourth:
+      case ChordStructure.SusFourth:
         return "sus4";
-      case SusSecondSusFourth:
+      case ChordStructure.SusSecondSusFourth:
         return "sus2sus4";
-      case MajorSixth:
+      case ChordStructure.MajorSixth:
         return "6";
-      case MinorSixth:
+      case ChordStructure.MinorSixth:
         return "min6";
-      case MajorFlatSixth:
+      case ChordStructure.MajorFlatSixth:
         return "(♭6)";
-      case MinorFlatSixth:
+      case ChordStructure.MinorFlatSixth:
         return "min(♭6)";
-      case DominantSeventh:
+      case ChordStructure.DominantSeventh:
         return "7";
-      case MajorSeventh:
+      case ChordStructure.MajorSeventh:
         return "maj7";
-      case MinorMajorSeventh:
+      case ChordStructure.MinorMajorSeventh:
         return "min(maj7)";
-      case MinorSeventh:
+      case ChordStructure.MinorSeventh:
         return "(♭7)";
-      case AugmentedMajorSeventh:
+      case ChordStructure.AugmentedMajorSeventh:
         return "aug(maj7)";
-      case AugmentedSeventh:
+      case ChordStructure.AugmentedSeventh:
         return "aug7";
-      case HalfDiminishedSeventh:
+      case ChordStructure.HalfDiminishedSeventh:
         return "m7(♭5)";
-      case DiminishedSeventh:
+      case ChordStructure.DiminishedSeventh:
         return "(o7)";
-      case DominantSeventhFlatFive:
+      case ChordStructure.DominantSeventhFlatFive:
         return "7(♭5)";
-      case DominantSeventhSusSecond:
+      case ChordStructure.DominantSeventhSusSecond:
         return "7sus2";
-      case DominantSeventhSusFourth:
+      case ChordStructure.DominantSeventhSusFourth:
         return "7sus4";
-      case DominantSeventhSusSecondSusFourth:
+      case ChordStructure.DominantSeventhSusSecondSusFourth:
         return "7sus2sus4";
-      case MajorSeventhSusSecond:
+      case ChordStructure.MajorSeventhSusSecond:
         return "M7sus2";
-      case MajorSeventhSusFourth:
+      case ChordStructure.MajorSeventhSusFourth:
         return "M7sus4";
-      case MajorSeventhSusSecondSusFourth:
+      case ChordStructure.MajorSeventhSusSecondSusFourth:
         return "M7sus2sus4";
     }
     throw Exception("unknown chord structure");
   }
+}
+
+class Chord {
+  final Note note;
+  final ChordStructure structure;
+  final Interval inversion;
 
   const Chord(
       {required this.note, required this.structure, required this.inversion});
 
-  static List<List<Interval>> chords() {
+  static List<ChordStructure> chords() {
     return [
-      PowerChord,
-      Major,
-      Minor,
-      Diminished,
-      Augmented,
-      MajorFlatFifth,
-      SusSecond,
-      SusFourth,
-      SusSecondSusFourth,
-      MajorSixth,
-      MinorSixth,
-      MajorFlatSixth,
-      MinorFlatSixth,
-      DominantSeventh,
-      MajorSeventh,
-      MinorMajorSeventh,
-      MinorSeventh,
-      AugmentedMajorSeventh,
-      AugmentedSeventh,
-      HalfDiminishedSeventh,
-      DiminishedSeventh,
-      DominantSeventhFlatFive,
-      DominantSeventhSusSecond,
-      DominantSeventhSusFourth,
-      DominantSeventhSusSecondSusFourth,
-      MajorSeventhSusSecond,
-      MajorSeventhSusFourth,
-      MajorSeventhSusSecondSusFourth,
+      ChordStructure.PowerChord,
+      ChordStructure.Major,
+      ChordStructure.Minor,
+      ChordStructure.Diminished,
+      ChordStructure.Augmented,
+      ChordStructure.MajorFlatFifth,
+      ChordStructure.SusSecond,
+      ChordStructure.SusFourth,
+      ChordStructure.SusSecondSusFourth,
+      ChordStructure.MajorSixth,
+      ChordStructure.MinorSixth,
+      ChordStructure.MajorFlatSixth,
+      ChordStructure.MinorFlatSixth,
+      ChordStructure.DominantSeventh,
+      ChordStructure.MajorSeventh,
+      ChordStructure.MinorMajorSeventh,
+      ChordStructure.MinorSeventh,
+      ChordStructure.AugmentedMajorSeventh,
+      ChordStructure.AugmentedSeventh,
+      ChordStructure.HalfDiminishedSeventh,
+      ChordStructure.DiminishedSeventh,
+      ChordStructure.DominantSeventhFlatFive,
+      ChordStructure.DominantSeventhSusSecond,
+      ChordStructure.DominantSeventhSusFourth,
+      ChordStructure.DominantSeventhSusSecondSusFourth,
+      ChordStructure.MajorSeventhSusSecond,
+      ChordStructure.MajorSeventhSusFourth,
+      ChordStructure.MajorSeventhSusSecondSusFourth,
     ];
   }
 
@@ -295,14 +394,14 @@ class Chord {
 //  }
 
   String name() {
-    return note.natural() + Chord.structureName(structure);
+    return note.natural() + structure.name;
   }
 
   List<Interval> intervals() {
-    return structure;
+    return structure.intervals;
   }
 
   List<Note> notes() {
-    return structure.map((e) => note.interval(e)).toList();
+    return structure.intervals.map((e) => note.interval(e)).toList();
   }
 }
