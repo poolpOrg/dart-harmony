@@ -137,11 +137,11 @@ class Note {
 
     // special case
     if (targetInterval.position == note.position &&
-        targetInterval.semitone % 12 == 0) {
+        targetInterval.semitones % 12 == 0) {
       return Note(
           note: note,
           accidentals: accidentals,
-          octave: octave + targetInterval.semitone ~/ 12);
+          octave: octave + targetInterval.semitones ~/ 12);
     }
 
     var targetNatural = naturals()[
@@ -151,19 +151,19 @@ class Note {
     // . print(targetNatural.position);
     //  print(sourceSemitone);
 
-    var targetOctave = octave + targetInterval.semitone ~/ 12;
+    var targetOctave = octave + targetInterval.semitones ~/ 12;
     if (targetNatural.position < note.position) {
       targetOctave++;
     }
 
     var targetSemitone = targetNatural.semitones + accidentals;
     var targetAccidentals = accidentals;
-    if (targetInterval.semitone < note.semitones) {
+    if (targetInterval.semitones < note.semitones) {
       targetSemitone += 12;
     }
 
     var targetDistance =
-        targetSemitone - (targetInterval.semitone % 12 + sourceSemitone);
+        targetSemitone - (targetInterval.semitones % 12 + sourceSemitone);
 
     //print(targetDistance);
     targetAccidentals -= targetDistance;
@@ -202,6 +202,6 @@ class Note {
       targetSemitone += 12;
     }
 
-    return Interval.fromConfiguration(targetPosition, targetSemitone);
+    return lookupInterval(targetPosition, targetSemitone);
   }
 }

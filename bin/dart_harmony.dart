@@ -11,9 +11,8 @@ void main(List<String> arguments) {
       note: Natural.C,
       accidentals: Accidental.Natural.value,
       octave: Octave.C4);
-  for (var i = 0; i < Interval.intervals().length; i++) {
-    print(
-        "${Interval.intervals()[i].name()}: ${n.interval(Interval.intervals()[i]).name()}");
+  for (var i = 0; i < intervals().length; i++) {
+    print("${intervals()[i].name}: ${n.interval(intervals()[i]).name()}");
   }
 
   for (var i = 0; i < Chord.chords().length; i++) {
@@ -22,7 +21,7 @@ void main(List<String> arguments) {
         structure: Chord.chords()[i],
         inversion: Interval.PerfectUnison);
     print(
-        "${c.name()}: ${c.intervals().map((e) => e.name())}  ${c.notes().map((e) => e.name())}");
+        "${c.name()}: ${c.intervals().map((e) => e.name)}  ${c.notes().map((e) => e.name())}");
   }
 
   for (var i = 0; i < Scale(note: n, structure: Locrian).notes().length; i++) {

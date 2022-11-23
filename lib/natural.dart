@@ -1,18 +1,6 @@
 enum Natural { C, D, E, F, G, A, B }
 
-List<Natural> naturals() {
-  return [
-    Natural.C,
-    Natural.D,
-    Natural.E,
-    Natural.F,
-    Natural.G,
-    Natural.A,
-    Natural.B
-  ];
-}
-
-extension NaturalNames on Natural {
+extension NaturalExtension on Natural {
   String get name {
     switch (this) {
       case Natural.C:
@@ -31,9 +19,7 @@ extension NaturalNames on Natural {
         return "B";
     }
   }
-}
 
-extension NaturalPosition on Natural {
   int get position {
     switch (this) {
       case Natural.C:
@@ -52,9 +38,7 @@ extension NaturalPosition on Natural {
         return 6;
     }
   }
-}
 
-extension NaturalSemitones on Natural {
   int get semitones {
     switch (this) {
       case Natural.C:
@@ -73,4 +57,8 @@ extension NaturalSemitones on Natural {
         return 11;
     }
   }
+}
+
+List<Natural> naturals() {
+  return Natural.values;
 }
