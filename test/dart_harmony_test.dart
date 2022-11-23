@@ -1,15 +1,14 @@
-import 'package:dart_harmony/harmony.dart';
 import 'package:dart_harmony/natural.dart';
 import 'package:dart_harmony/interval.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('naturals_01', () {
-    expect(Natural.naturals().length, 7);
+    expect(naturals().length, 7);
   });
 
   test('naturals_02', () {
-    expect(Natural.naturals().map((e) => e.name), [
+    expect(naturals().map((e) => e.name), [
       Natural.C.name,
       Natural.D.name,
       Natural.E.name,

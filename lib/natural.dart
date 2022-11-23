@@ -1,23 +1,76 @@
-class Natural {
-  final String _name;
-  final int _position;
-  final int _semitone;
+enum Natural { C, D, E, F, G, A, B }
 
-  const Natural(this._name, this._position, this._semitone);
+List<Natural> naturals() {
+  return [
+    Natural.C,
+    Natural.D,
+    Natural.E,
+    Natural.F,
+    Natural.G,
+    Natural.A,
+    Natural.B
+  ];
+}
 
-  static const C = Natural("C", 0, 0);
-  static const D = Natural("D", 1, 2);
-  static const E = Natural("E", 2, 4);
-  static const F = Natural("F", 3, 5);
-  static const G = Natural("G", 4, 7);
-  static const A = Natural("A", 5, 9);
-  static const B = Natural("B", 6, 11);
-
-  static List<Natural> naturals() {
-    return [C, D, E, F, G, A, B];
+extension NaturalNames on Natural {
+  String get name {
+    switch (this) {
+      case Natural.C:
+        return "C";
+      case Natural.D:
+        return "D";
+      case Natural.E:
+        return "E";
+      case Natural.F:
+        return "F";
+      case Natural.G:
+        return "G";
+      case Natural.A:
+        return "A";
+      case Natural.B:
+        return "B";
+    }
   }
+}
 
-  String name() => _name;
-  int position() => _position;
-  int semitone() => _semitone;
+extension NaturalPosition on Natural {
+  int get position {
+    switch (this) {
+      case Natural.C:
+        return 0;
+      case Natural.D:
+        return 1;
+      case Natural.E:
+        return 2;
+      case Natural.F:
+        return 3;
+      case Natural.G:
+        return 4;
+      case Natural.A:
+        return 5;
+      case Natural.B:
+        return 6;
+    }
+  }
+}
+
+extension NaturalSemitones on Natural {
+  int get semitones {
+    switch (this) {
+      case Natural.C:
+        return 0;
+      case Natural.D:
+        return 2;
+      case Natural.E:
+        return 4;
+      case Natural.F:
+        return 5;
+      case Natural.G:
+        return 7;
+      case Natural.A:
+        return 9;
+      case Natural.B:
+        return 11;
+    }
+  }
 }
