@@ -6,25 +6,22 @@ import 'package:dart_harmony/chord.dart';
 
 void main(List<String> arguments) {
   //print(Natural.naturals().map((e) => e.name));
+  var natural = naturalParse("C");
+  //print(natural.name);
 
-  var n = Note(
-      note: Natural.C,
-      accidentals: Accidental.Natural.value,
-      octave: Octave.C4);
-  for (var i = 0; i < intervals().length; i++) {
-    print("${intervals()[i].name}: ${n.interval(intervals()[i]).name()}");
-  }
+  var note = noteParse("C0");
+  //print(note.name());
 
-  for (var i = 0; i < Chord.chords().length; i++) {
-    var c = Chord(
-        note: n,
-        structure: Chord.chords()[i],
-        inversion: Interval.PerfectUnison);
-    print(
-        "${c.name()}: ${c.intervals().map((e) => e.name)}  ${c.notes().map((e) => e.name())}");
-  }
+  var chord = chordParse(arguments.first);
+  //print(chord.name());
 
-  for (var i = 0; i < Scale(note: n, structure: Locrian).notes().length; i++) {
-    print("${Scale(note: n, structure: Locrian).notes()[i].name()}");
-  }
+  var curr = noteParse("C0");
+  do {
+    print(curr.name());
+  } while (!(curr = curr.interval(Interval.PerfectFifth)).enharmonic(note));
+
+  curr = noteParse("C0");
+  do {
+    print(curr.name());
+  } while (!(curr = curr.interval(Interval.PerfectFourth)).enharmonic(note));
 }

@@ -59,6 +59,26 @@ extension NaturalExtension on Natural {
   }
 }
 
+Natural naturalParse(String value) {
+  switch (value) {
+    case "C":
+      return Natural.C;
+    case "D":
+      return Natural.D;
+    case "E":
+      return Natural.E;
+    case "F":
+      return Natural.F;
+    case "G":
+      return Natural.G;
+    case "A":
+      return Natural.A;
+    case "B":
+      return Natural.B;
+  }
+  throw Exception("could not parse natural $value");
+}
+
 List<Natural> naturals() {
   return Natural.values;
 }

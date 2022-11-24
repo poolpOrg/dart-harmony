@@ -1,107 +1,9 @@
 // ignore_for_file: constant_identifier_names
 
+import 'accidental.dart';
 import 'natural.dart';
 import 'interval.dart';
-
-enum Accidental {
-  Natural,
-  Flat,
-  Sharp,
-}
-
-extension AccidentalMethods on Accidental {
-  String get name {
-    switch (this) {
-      case Accidental.Natural:
-        return "";
-      case Accidental.Flat:
-        return "♭";
-      case Accidental.Sharp:
-        return "♯";
-    }
-  }
-
-  int get value {
-    switch (this) {
-      case Accidental.Natural:
-        return 0;
-      case Accidental.Flat:
-        return -1;
-      case Accidental.Sharp:
-        return 1;
-    }
-  }
-}
-
-enum Octave { C0, C1, C2, C3, C4, C5, C6, C7 }
-
-extension OctaveMethods on Octave {
-  String get name {
-    switch (this) {
-      case Octave.C0:
-        return "0";
-      case Octave.C1:
-        return "1";
-      case Octave.C2:
-        return "2";
-      case Octave.C3:
-        return "3";
-      case Octave.C4:
-        return "4";
-      case Octave.C5:
-        return "5";
-      case Octave.C6:
-        return "6";
-      case Octave.C7:
-        return "7";
-    }
-  }
-
-  int get value {
-    switch (this) {
-      case Octave.C0:
-        return 0;
-      case Octave.C1:
-        return 1;
-      case Octave.C2:
-        return 2;
-      case Octave.C3:
-        return 3;
-      case Octave.C4:
-        return 4;
-      case Octave.C5:
-        return 5;
-      case Octave.C6:
-        return 6;
-      case Octave.C7:
-        return 7;
-    }
-  }
-
-  Octave operator +(int n) {
-    var v = value + n;
-    switch (v) {
-      case 0:
-        return Octave.C0;
-      case 1:
-        return Octave.C1;
-      case 2:
-        return Octave.C2;
-      case 3:
-        return Octave.C3;
-      case 4:
-        return Octave.C4;
-      case 5:
-        return Octave.C5;
-      case 6:
-        return Octave.C6;
-      case 7:
-        return Octave.C7;
-      default:
-        throw Exception("octave overflow");
-    }
-  }
-}
+import 'octave.dart';
 
 class Note {
   final Natural note;
@@ -114,13 +16,24 @@ class Note {
     return note.name;
   }
 
-  String name() {
+  String accidental() {
     if (accidentals == 0) {
-      return note.name + octave.name;
-    } else if (accidentals < 0) {
-      return note.name + ("♭" * -accidentals) + octave.name;
+      return "";
+    }
+    if (accidentals < 0) {
+      return "♭" * -accidentals;
     } else {
-      return note.name + ("♯" * accidentals) + octave.name;
+      return "♯" * accidentals;
+    }
+  }
+
+  String name({bool showOctave = false}) {
+    if (accidentals == 0) {
+      return note.name + (showOctave ? octave.name : "");
+    } else if (accidentals < 0) {
+      return note.name + ("♭" * -accidentals) + (showOctave ? octave.name : "");
+    } else {
+      return note.name + ("♯" * accidentals) + (showOctave ? octave.name : "");
     }
   }
 
@@ -204,4 +117,35 @@ class Note {
 
     return lookupInterval(targetPosition, targetSemitone);
   }
+}
+
+Note noteParse(String value) {
+  if (value.length == 0) {
+    throw Exception("empty note name");
+  }
+
+  var natural = Natural.C;
+  var octave = Octave.C4;
+  var accidentals = Accidental.Natural;
+
+  var lastChar = value[value.length - 1];
+  var parsedOctave = num.tryParse(value[value.length - 1]);
+  if (parsedOctave != null) {
+    octave = octaveParse(value[value.length - 1]);
+    value = value.substring(0, value.length - 1);
+  }
+
+  natural = naturalParse(value[0]);
+  value = value.substring(1);
+
+  int accidentalsSum = 0;
+  for (var i = 0; i < value.length; i++) {
+    if (value[i] == '♭' || value[i] == 'b') {
+      accidentalsSum += Accidental.Flat.value as int;
+    } else if (value[i] == '♯' || value[i] == '#') {
+      accidentalsSum += Accidental.Sharp.value as int;
+    }
+  }
+
+  return Note(note: natural, accidentals: accidentalsSum, octave: octave);
 }

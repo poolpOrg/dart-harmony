@@ -1,6 +1,16 @@
 import 'note.dart';
 import 'interval.dart';
 
+enum ScaleStructure {
+  Ionian,
+  Dorian,
+  Phrygian,
+  Lydian,
+  Mixolydian,
+  Aeolian,
+  Locrian,
+}
+
 const Ionian = [
   Interval.PerfectUnison,
   Interval.MajorSecond,
@@ -77,6 +87,46 @@ const Locrian = [
   Interval.MinorSeventh,
   Interval.PerfectOctave,
 ];
+
+extension ScaleStructureMethods on ScaleStructure {
+  List<Interval> get intervals {
+    switch (this) {
+      case ScaleStructure.Ionian:
+        return Ionian;
+      case ScaleStructure.Dorian:
+        return Dorian;
+      case ScaleStructure.Phrygian:
+        return Phrygian;
+      case ScaleStructure.Lydian:
+        return Lydian;
+      case ScaleStructure.Mixolydian:
+        return Mixolydian;
+      case ScaleStructure.Aeolian:
+        return Aeolian;
+      case ScaleStructure.Locrian:
+        return Locrian;
+    }
+  }
+
+  String get name {
+    switch (this) {
+      case ScaleStructure.Ionian:
+        return "ionian";
+      case ScaleStructure.Dorian:
+        return "dorian";
+      case ScaleStructure.Phrygian:
+        return "phrygian";
+      case ScaleStructure.Lydian:
+        return "lydian";
+      case ScaleStructure.Mixolydian:
+        return "myxolidian";
+      case ScaleStructure.Aeolian:
+        return "aeolian";
+      case ScaleStructure.Locrian:
+        return "locrian";
+    }
+  }
+}
 
 class Scale {
   final Note note;

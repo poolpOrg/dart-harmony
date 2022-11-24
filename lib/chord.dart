@@ -344,7 +344,6 @@ extension ChordStructureMethods on ChordStructure {
       case ChordStructure.MajorSeventhSusSecondSusFourth:
         return "M7sus2sus4";
     }
-    throw Exception("unknown chord structure");
   }
 }
 
@@ -394,6 +393,10 @@ class Chord {
 //  }
 
   String name() {
+    if (inversion != Interval.PerfectUnison) {
+      return "${note.natural()}${structure.name}/${note.interval(inversion).name()}";
+    }
+
     return note.natural() + structure.name;
   }
 
@@ -404,4 +407,61 @@ class Chord {
   List<Note> notes() {
     return structure.intervals.map((e) => note.interval(e)).toList();
   }
+}
+
+Chord chordParse(String value) {
+  if (value.length == 0) {
+    throw Exception("empty chord name");
+  }
+
+  int noteEnd = 1;
+  for (var i = noteEnd; i < value.length; i++) {
+    if (value[i] != '♭' &&
+        value[i] != '♯' &&
+        value[i] != 'b' &&
+        value[i] != '#') {
+      break;
+    }
+  }
+
+  var noteName = value.substring(0, noteEnd);
+  var chordName = value.substring(noteEnd);
+  var inversion = "";
+
+  var inversionIndex = chordName.indexOf("/");
+  if (inversionIndex != -1) {
+    inversion = chordName.substring(inversionIndex + 1);
+    chordName = chordName.substring(0, inversionIndex);
+  }
+
+  var structure =
+      ChordStructure.values.where((element) => element.name == chordName).first;
+  var note = noteParse(noteName);
+
+  var c = Chord(
+      note: note, structure: structure, inversion: Interval.PerfectUnison);
+
+  if (inversion != "") {
+    if (inversion == noteName) {
+      throw Exception("inversion note is root of chord");
+    }
+
+    var n2 = noteParse(inversion);
+    if (inversion != n2.name(showOctave: true)) {
+      // decrement octave HERE
+    }
+
+    for (var i = 0; i < structure.intervals.length; i++) {
+      if (note.interval(structure.intervals[i]).name() == n2.name()) {
+        return Chord(
+            note: note,
+            structure: structure,
+            inversion: structure.intervals[i]);
+      }
+    }
+    throw Exception("inversion note is not in chord");
+    // set octave of root to n2 octave
+  }
+
+  return c;
 }
