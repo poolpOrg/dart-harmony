@@ -12,8 +12,8 @@ class Note {
 
   Note({required this.note, required this.accidentals, required this.octave});
 
-  String natural() {
-    return note.name;
+  Natural natural() {
+    return note;
   }
 
   String accidental() {
@@ -144,8 +144,24 @@ Note noteParse(String value) {
       accidentalsSum += Accidental.Flat.value as int;
     } else if (value[i] == '♯' || value[i] == '#') {
       accidentalsSum += Accidental.Sharp.value as int;
+    } else if (value[i] == '♮') {
+      accidentalsSum = 0;
+    } else {
+      throw Exception("invalid accidental");
     }
   }
 
   return Note(note: natural, accidentals: accidentalsSum, octave: octave);
+}
+
+List<Note> notes() {
+  List<Note> ret = List<Note>.empty(growable: true);
+  Natural.values.forEach((e) {
+    for (var i = 0; i < 8; i++) {
+      ret.add(noteParse("${e.name}♭${i}"));
+      ret.add(noteParse("${e.name}${i}"));
+      ret.add(noteParse("${e.name}♯${i}"));
+    }
+  });
+  return ret;
 }

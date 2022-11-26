@@ -397,7 +397,7 @@ class Chord {
       return "${note.natural()}${structure.name}/${note.interval(inversion).name()}";
     }
 
-    return note.natural() + structure.name;
+    return note.name() + structure.name;
   }
 
   List<Interval> intervals() {
@@ -422,9 +422,11 @@ Chord chordParse(String value) {
         value[i] != '#') {
       break;
     }
+    noteEnd++;
   }
 
   var noteName = value.substring(0, noteEnd);
+  print(noteName);
   var chordName = value.substring(noteEnd);
   var inversion = "";
 
@@ -434,8 +436,19 @@ Chord chordParse(String value) {
     chordName = chordName.substring(0, inversionIndex);
   }
 
-  var structure =
-      ChordStructure.values.where((element) => element.name == chordName).first;
+  ChordStructure structure = ChordStructure.Major;
+  var found = false;
+  for (var i = 0; i < ChordStructure.values.length; i++) {
+    if (ChordStructure.values[i].name == chordName) {
+      structure = ChordStructure.values[i];
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    throw Exception("could not find chord");
+  }
+
   var note = noteParse(noteName);
 
   var c = Chord(
@@ -464,4 +477,8 @@ Chord chordParse(String value) {
   }
 
   return c;
+}
+
+List<ChordStructure> chords() {
+  return ChordStructure.values.toList();
 }

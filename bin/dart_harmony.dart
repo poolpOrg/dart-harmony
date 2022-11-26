@@ -15,13 +15,13 @@ void main(List<String> arguments) {
   var chord = chordParse(arguments.first);
   //print(chord.name());
 
-  var curr = noteParse("C0");
-  do {
-    print(curr.name());
-  } while (!(curr = curr.interval(Interval.PerfectFifth)).enharmonic(note));
-
-  curr = noteParse("C0");
-  do {
-    print(curr.name());
-  } while (!(curr = curr.interval(Interval.PerfectFourth)).enharmonic(note));
+  chords().forEach((element) {
+    var c = chordParse(note.name() + element.name);
+    print(c.name());
+    c.notes().sublist(1).forEach((noteName) {
+      var inversion =
+          chordParse(note.name() + element.name + "/" + noteName.name());
+      print("\t${inversion.name()}");
+    });
+  });
 }

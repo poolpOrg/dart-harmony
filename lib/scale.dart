@@ -130,11 +130,60 @@ extension ScaleStructureMethods on ScaleStructure {
 
 class Scale {
   final Note note;
-  final List<Interval> structure;
+  final ScaleStructure structure;
 
   const Scale({required this.note, required this.structure});
 
   List<Note> notes() {
-    return List<Note>.from(structure.map((e) => note.interval(e)));
+    return List<Note>.from(structure.intervals.map((e) => note.interval(e)));
   }
+
+  String name() {
+    return note.name() + structure.name;
+  }
+}
+
+Scale scaleParse(String value) {
+  if (value.length == 0) {
+    throw Exception("empty chord name");
+  }
+
+  int noteEnd = 1;
+  for (var i = noteEnd; i < value.length; i++) {
+    if (value[i] != '♭' &&
+        value[i] != '♯' &&
+        value[i] != 'b' &&
+        value[i] != '#') {
+      break;
+    }
+    noteEnd++;
+  }
+
+  var noteName = value.substring(0, noteEnd);
+  var scaleName = value.substring(noteEnd);
+
+  ScaleStructure structure = ScaleStructure.Ionian;
+  if (scaleName.length != 0) {
+    var found = false;
+    for (var i = 0; i < ScaleStructure.values.length; i++) {
+      if (ScaleStructure.values[i].name == scaleName) {
+        structure = ScaleStructure.values[i];
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      throw Exception("could not find scale");
+    }
+  }
+
+  var note = noteParse(noteName);
+
+  var s = Scale(note: note, structure: structure);
+
+  return s;
+}
+
+List<ScaleStructure> scales() {
+  return ScaleStructure.values.toList();
 }
