@@ -426,7 +426,6 @@ Chord chordParse(String value) {
   }
 
   var noteName = value.substring(0, noteEnd);
-  print(noteName);
   var chordName = value.substring(noteEnd);
   var inversion = "";
 
