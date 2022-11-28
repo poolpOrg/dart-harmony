@@ -170,9 +170,10 @@ List<Note> notes() {
   List<Note> ret = List<Note>.empty(growable: true);
   Natural.values.forEach((e) {
     for (var i = 0; i < 8; i++) {
+      ret.add(noteParse("${e.name}♭♭$i"));
       ret.add(noteParse("${e.name}♭$i"));
       ret.add(noteParse("${e.name}$i"));
-      ret.add(noteParse("${e.name}♯$i"));
+      ret.add(noteParse("${e.name}♯♯$i"));
     }
   });
   return ret;

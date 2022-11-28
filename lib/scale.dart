@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'note.dart';
 import 'chord.dart';
 import 'octave.dart';
@@ -221,6 +223,10 @@ class Scale {
     }
 
     return ret;
+  }
+
+  Scale interval(Interval target) {
+    return Scale(note: note.interval(target), structure: structure);
   }
 }
 

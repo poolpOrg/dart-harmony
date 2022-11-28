@@ -379,6 +379,13 @@ class Chord {
   List<Note> notes() {
     return structure.intervals.map((e) => note.interval(e)).toList();
   }
+
+  Chord interval(Interval target) {
+    return Chord(
+        note: note.interval(target),
+        structure: structure,
+        inversion: inversion);
+  }
 }
 
 Chord chordParse(String value) {

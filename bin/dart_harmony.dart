@@ -20,15 +20,20 @@ void main(List<String> arguments) {
   }
 
   //print(note.name());
-  var scale = scaleParse("${note.name()}aeolian");
+  var scale = scaleParse("${note.name()}");
+  print(scale.name());
   print(scale.notes().map((e) => e.name()));
   print(scale.diatonicTriads().map((e) => e.name()));
   print(scale.diatonicSeventhChords().map((e) => e.name()));
+  print("");
 
-  intervals().sublist(0, 25).forEach((e) {
-    print(e.name);
-    print(e.invert().name);
-  });
+  var f = scale.interval(Interval.PerfectFifth);
+  print(f.name());
+  print(f.notes().map((e) => e.name()));
+  print(f.diatonicTriads().map((e) => e.name()));
+  print(f.diatonicSeventhChords().map((e) => e.name()));
+  print("");
+
 /*
   chords().forEach((element) {
     var c = chordParse(note.name() + element.name);
