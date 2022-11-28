@@ -14,13 +14,15 @@ void main(List<String> arguments) {
   for (var i = 0; i < intervals().length; i++) {
     //if (intervals()[i] == Interval.AugmentedSeventh) {
     //intervals()[i] == Interval.DiminishedOctave) {
-    print(
-        "${intervals()[i].name}: ${note.interval(intervals()[i]).name(showOctave: true)}");
+    //print(
+    //    "${intervals()[i].name}: ${note.interval(intervals()[i]).name(showOctave: true)}");
     //}
   }
 
   //print(note.name());
-  //print(scale.diatonicTriads().map((e) => e.name()));
+  var scale = scaleParse("Cionian");
+  print(scale.diatonicTriads().map((e) => e.name()));
+  print(scale.diatonicTetrads().map((e) => e.name()));
 
 /*
   chords().forEach((element) {

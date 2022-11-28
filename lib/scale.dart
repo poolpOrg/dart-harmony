@@ -1,5 +1,6 @@
 import 'note.dart';
 import 'chord.dart';
+import 'octave.dart';
 import 'interval.dart';
 
 enum ScaleStructure {
@@ -141,6 +142,84 @@ class Scale {
 
   List<Note> notes() {
     return List<Note>.from(structure.intervals.map((e) => note.interval(e)));
+  }
+
+  List<Chord> diatonicTriads() {
+    List<Chord> ret = List<Chord>.empty(growable: true);
+
+    for (var i = 0; i < notes().length - 1; i++) {
+      var root = notes()[i];
+      var third = notes()[(i + 2) % (notes().length - 1)];
+      var fifth = notes()[(i + 4) % (notes().length - 1)];
+
+      if (third.note.index < root.note.index) {
+        third = Note(
+            note: third.note,
+            accidentals: third.accidentals,
+            octave: third.octave + 1);
+      }
+      if (fifth.note.index < root.note.index) {
+        fifth = Note(
+            note: fifth.note,
+            accidentals: fifth.accidentals,
+            octave: fifth.octave + 1);
+      }
+
+      var structure = List<Interval>.empty(growable: true);
+      structure.add(root.distance(root));
+      structure.add(root.distance(third));
+      structure.add(root.distance(fifth));
+      ret.add(Chord(
+          inversion: Interval.PerfectUnison,
+          note: root,
+          structure: chordFromStructure(structure)));
+    }
+
+    return ret;
+  }
+
+  List<Chord> diatonicTetrads() {
+    List<Chord> ret = List<Chord>.empty(growable: true);
+
+    for (var i = 0; i < notes().length - 1; i++) {
+      var root = notes()[i];
+      var third = notes()[(i + 2) % (notes().length - 1)];
+      var fifth = notes()[(i + 4) % (notes().length - 1)];
+      var seventh = notes()[(i + 6) % (notes().length - 1)];
+
+      if (third.note.index < root.note.index) {
+        third = Note(
+            note: third.note,
+            accidentals: third.accidentals,
+            octave: third.octave + 1);
+      }
+      if (fifth.note.index < root.note.index) {
+        fifth = Note(
+            note: fifth.note,
+            accidentals: fifth.accidentals,
+            octave: fifth.octave + 1);
+      }
+      if (seventh.note.index < root.note.index) {
+        seventh = Note(
+            note: seventh.note,
+            accidentals: seventh.accidentals,
+            octave: seventh.octave + 1);
+      }
+
+      var structure = List<Interval>.empty(growable: true);
+      structure.add(root.distance(root));
+      structure.add(root.distance(third));
+      structure.add(root.distance(fifth));
+      structure.add(root.distance(seventh));
+
+      print(structure);
+      ret.add(Chord(
+          inversion: Interval.PerfectUnison,
+          note: root,
+          structure: chordFromStructure(structure)));
+    }
+
+    return ret;
   }
 }
 
