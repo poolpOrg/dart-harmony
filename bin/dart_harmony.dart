@@ -6,7 +6,7 @@ import 'package:dart_harmony/chord.dart';
 
 void main(List<String> arguments) {
   //print(Natural.naturals().map((e) => e.name));
-  var natural = naturalParse("C");
+  var natural = naturalParse(arguments.first);
   //print(natural.name);
 
   var note = noteParse(arguments.first);
@@ -20,7 +20,7 @@ void main(List<String> arguments) {
   }
 
   //print(note.name());
-  var scale = scaleParse("Daeolian");
+  var scale = scaleParse("${note.name()}aeolian");
   print(scale.notes().map((e) => e.name()));
   print(scale.diatonicTriads().map((e) => e.name()));
   print(scale.diatonicSeventhChords().map((e) => e.name()));
