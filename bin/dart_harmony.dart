@@ -27,7 +27,7 @@ void main(List<String> arguments) {
   print(scale.diatonicSeventhChords().map((e) => e.name()));
   print("");
 
-  var f = scale.interval(Interval.PerfectFifth);
+  var f = scaleParse("Ddorian");
   print(f.name());
   print(f.notes().map((e) => e.name()));
   print(f.diatonicTriads().map((e) => e.name()));

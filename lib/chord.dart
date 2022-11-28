@@ -34,6 +34,36 @@ enum ChordStructure {
   MajorSeventhSusSecond,
   MajorSeventhSusFourth,
   MajorSeventhSusSecondSusFourth,
+
+  MajorNinth,
+  DominantNinth,
+  DominantMinorNinth,
+  MinorMajorNinth,
+  MinorNinth,
+  AugmentedMajorNinth,
+  AugmentedDominantNinth,
+  HalfDiminishedNinth,
+  HalfDiminishedMinorNinth,
+  DiminishedNinth,
+  DiminishedMinorNinth,
+
+  Eleventh,
+  MajorEleventh,
+  MinorMajorEleventh,
+  MinorEleventh,
+  AugmentedMajorEleventh,
+  AugmentedEleventh,
+  HalfDiminishedEleventh,
+  DiminishedEleventh,
+
+  Thirteenth,
+  MajorThirteenth,
+  MinorMajorThirteenth,
+  MinorThirteenth,
+  AugmentedMajorThirteenth,
+  AugmentedThirteenth,
+  HalfDiminishedThirteenth,
+  DiminishedThirteenth,
 }
 
 const List<Interval> PowerChord = [
@@ -225,6 +255,99 @@ const List<Interval> MajorSeventhSusSecondSusFourth = [
   Interval.MajorSeventh,
 ];
 
+const List<Interval> MajorNinth = [...MajorSeventh, Interval.MajorNinth];
+const List<Interval> DominantNinth = [...DominantSeventh, Interval.MajorNinth];
+const List<Interval> DominantMinorNinth = [
+  ...DominantSeventh,
+  Interval.MinorNinth
+];
+const List<Interval> MinorMajorNinth = [
+  ...MinorMajorSeventh,
+  Interval.MajorNinth
+];
+const List<Interval> MinorNinth = [...MinorSeventh, Interval.MajorNinth];
+
+const List<Interval> AugmentedMajorNinth = [
+  ...AugmentedMajorSeventh,
+  Interval.MajorNinth
+];
+const List<Interval> AugmentedDominantNinth = [
+  ...AugmentedSeventh,
+  Interval.MajorNinth
+];
+
+const List<Interval> HalfDiminishedNinth = [
+  ...HalfDiminishedSeventh,
+  Interval.MajorNinth
+];
+const List<Interval> HalfDiminishedMinorNinth = [
+  ...HalfDiminishedSeventh,
+  Interval.MinorNinth
+];
+
+const List<Interval> DiminishedNinth = [
+  ...DiminishedSeventh,
+  Interval.MajorNinth
+];
+const List<Interval> DiminishedMinorNinth = [
+  ...DiminishedSeventh,
+  Interval.MinorNinth
+];
+
+const List<Interval> Eleventh = [...DominantNinth, Interval.PerfectEleventh];
+const List<Interval> MajorEleventh = [...MajorNinth, Interval.PerfectEleventh];
+const List<Interval> MinorMajorEleventh = [
+  ...MinorMajorNinth,
+  Interval.PerfectEleventh
+];
+const List<Interval> MinorEleventh = [...MinorNinth, Interval.PerfectEleventh];
+const List<Interval> AugmentedMajorEleventh = [
+  ...AugmentedMajorNinth,
+  Interval.PerfectEleventh
+];
+const List<Interval> AugmentedEleventh = [
+  ...AugmentedDominantNinth,
+  Interval.PerfectEleventh
+];
+const List<Interval> HalfDiminishedEleventh = [
+  ...HalfDiminishedNinth,
+  Interval.PerfectEleventh
+];
+const List<Interval> DiminishedEleventh = [
+  ...DiminishedNinth,
+  Interval.PerfectEleventh
+];
+
+const List<Interval> Thirteenth = [...Eleventh, Interval.MajorThirteenth];
+const List<Interval> MajorThirteenth = [
+  ...MajorEleventh,
+  Interval.MajorThirteenth
+];
+const List<Interval> MinorMajorThirteenth = [
+  ...MinorMajorEleventh,
+  Interval.MajorThirteenth
+];
+const List<Interval> MinorThirteenth = [
+  ...MinorEleventh,
+  Interval.MajorThirteenth
+];
+const List<Interval> AugmentedMajorThirteenth = [
+  ...AugmentedMajorEleventh,
+  Interval.MajorThirteenth
+];
+const List<Interval> AugmentedThirteenth = [
+  ...AugmentedEleventh,
+  Interval.MajorThirteenth
+];
+const List<Interval> HalfDiminishedThirteenth = [
+  ...HalfDiminishedEleventh,
+  Interval.MajorThirteenth
+];
+const List<Interval> DiminishedThirteenth = [
+  ...DiminishedEleventh,
+  Interval.MajorThirteenth
+];
+
 extension ChordStructureMethods on ChordStructure {
   List<Interval> get intervals {
     switch (this) {
@@ -284,6 +407,63 @@ extension ChordStructureMethods on ChordStructure {
         return MajorSeventhSusFourth;
       case ChordStructure.MajorSeventhSusSecondSusFourth:
         return MajorSeventhSusSecondSusFourth;
+
+      case ChordStructure.MajorNinth:
+        return MajorNinth;
+      case ChordStructure.DominantNinth:
+        return DominantNinth;
+      case ChordStructure.DominantMinorNinth:
+        return DominantMinorNinth;
+      case ChordStructure.MinorMajorNinth:
+        return MinorMajorNinth;
+      case ChordStructure.MinorNinth:
+        return MinorNinth;
+      case ChordStructure.AugmentedMajorNinth:
+        return AugmentedMajorNinth;
+      case ChordStructure.AugmentedDominantNinth:
+        return AugmentedDominantNinth;
+      case ChordStructure.HalfDiminishedNinth:
+        return HalfDiminishedNinth;
+      case ChordStructure.HalfDiminishedMinorNinth:
+        return HalfDiminishedMinorNinth;
+      case ChordStructure.DiminishedNinth:
+        return DiminishedNinth;
+      case ChordStructure.DiminishedMinorNinth:
+        return DiminishedMinorNinth;
+
+      case ChordStructure.Eleventh:
+        return Eleventh;
+      case ChordStructure.MajorEleventh:
+        return MajorEleventh;
+      case ChordStructure.MinorMajorEleventh:
+        return MinorMajorEleventh;
+      case ChordStructure.MinorEleventh:
+        return MinorEleventh;
+      case ChordStructure.AugmentedMajorEleventh:
+        return AugmentedMajorEleventh;
+      case ChordStructure.AugmentedEleventh:
+        return AugmentedEleventh;
+      case ChordStructure.HalfDiminishedEleventh:
+        return HalfDiminishedEleventh;
+      case ChordStructure.DiminishedEleventh:
+        return DiminishedEleventh;
+
+      case ChordStructure.Thirteenth:
+        return Thirteenth;
+      case ChordStructure.MajorThirteenth:
+        return MajorThirteenth;
+      case ChordStructure.MinorMajorThirteenth:
+        return MinorMajorThirteenth;
+      case ChordStructure.MinorThirteenth:
+        return MinorThirteenth;
+      case ChordStructure.AugmentedMajorThirteenth:
+        return AugmentedMajorThirteenth;
+      case ChordStructure.AugmentedThirteenth:
+        return AugmentedThirteenth;
+      case ChordStructure.HalfDiminishedThirteenth:
+        return HalfDiminishedThirteenth;
+      case ChordStructure.DiminishedThirteenth:
+        return DiminishedThirteenth;
     }
   }
 
@@ -349,6 +529,63 @@ extension ChordStructureMethods on ChordStructure {
         return "M7sus4";
       case ChordStructure.MajorSeventhSusSecondSusFourth:
         return "M7sus2sus4";
+
+      case ChordStructure.MajorNinth:
+        return "maj9";
+      case ChordStructure.DominantNinth:
+        return "9";
+      case ChordStructure.DominantMinorNinth:
+        return "7b9";
+      case ChordStructure.MinorMajorNinth:
+        return "-M9";
+      case ChordStructure.MinorNinth:
+        return "min9";
+      case ChordStructure.AugmentedMajorNinth:
+        return "+M9";
+      case ChordStructure.AugmentedDominantNinth:
+        return "aug9";
+      case ChordStructure.HalfDiminishedNinth:
+        return "ø9";
+      case ChordStructure.HalfDiminishedMinorNinth:
+        return "øb9";
+      case ChordStructure.DiminishedNinth:
+        return "dim9";
+      case ChordStructure.DiminishedMinorNinth:
+        return "dimb9";
+
+      case ChordStructure.Eleventh:
+        return "11";
+      case ChordStructure.MajorEleventh:
+        return "maj11";
+      case ChordStructure.MinorMajorEleventh:
+        return "-M11";
+      case ChordStructure.MinorEleventh:
+        return "min11";
+      case ChordStructure.AugmentedMajorEleventh:
+        return "+M11";
+      case ChordStructure.AugmentedEleventh:
+        return "aug11";
+      case ChordStructure.HalfDiminishedEleventh:
+        return "ø11";
+      case ChordStructure.DiminishedEleventh:
+        return "dim11";
+
+      case ChordStructure.Thirteenth:
+        return "13";
+      case ChordStructure.MajorThirteenth:
+        return "maj13";
+      case ChordStructure.MinorMajorThirteenth:
+        return "-M13";
+      case ChordStructure.MinorThirteenth:
+        return "min13";
+      case ChordStructure.AugmentedMajorThirteenth:
+        return "+M13";
+      case ChordStructure.AugmentedThirteenth:
+        return "aug13";
+      case ChordStructure.HalfDiminishedThirteenth:
+        return "ø13";
+      case ChordStructure.DiminishedThirteenth:
+        return "dim13";
     }
   }
 }
