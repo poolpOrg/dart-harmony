@@ -72,16 +72,20 @@ class Note {
 
     var targetAccidentals = accidentals - distanceTarget;
 
+    var targetOctave = octave + targetInt.semitones ~/ 12;
+
     if (targetNatural.position < note.position) {
       targetAccidentals = targetAccidentals - 12;
     }
 
     if (targetInt == Interval.AugmentedSeventh ||
         targetInt == Interval.AugmentedFourteenth) {
+      targetOctave--;
       targetAccidentals = targetAccidentals + 12;
     }
     if (targetInt == Interval.DiminishedOctave ||
         targetInt == Interval.DiminishedFifteenth) {
+      targetOctave++;
       targetAccidentals = targetAccidentals - 12;
     }
 
@@ -95,7 +99,6 @@ class Note {
       }
     }
 
-    var targetOctave = octave;
     if (targetNatural.position < note.position) {
       targetOctave++;
     }

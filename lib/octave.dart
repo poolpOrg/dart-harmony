@@ -80,6 +80,30 @@ extension OctaveMethods on Octave {
         throw Exception("octave overflow");
     }
   }
+
+  Octave operator -(int n) {
+    var v = value - n;
+    switch (v) {
+      case 0:
+        return Octave.C0;
+      case 1:
+        return Octave.C1;
+      case 2:
+        return Octave.C2;
+      case 3:
+        return Octave.C3;
+      case 4:
+        return Octave.C4;
+      case 5:
+        return Octave.C5;
+      case 6:
+        return Octave.C6;
+      case 7:
+        return Octave.C7;
+      default:
+        throw Exception("octave overflow");
+    }
+  }
 }
 
 Octave octaveParse(String value) {

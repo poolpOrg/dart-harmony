@@ -14,7 +14,8 @@ void main(List<String> arguments) {
   for (var i = 0; i < intervals().length; i++) {
     //if (intervals()[i] == Interval.AugmentedSeventh) {
     //intervals()[i] == Interval.DiminishedOctave) {
-    print("${intervals()[i].name}: ${note.interval(intervals()[i]).name()}");
+    print(
+        "${intervals()[i].name}: ${note.interval(intervals()[i]).name(showOctave: true)}");
     //}
   }
 
