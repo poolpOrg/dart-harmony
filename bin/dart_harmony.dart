@@ -20,9 +20,10 @@ void main(List<String> arguments) {
   }
 
   //print(note.name());
-  var scale = scaleParse("Cionian");
+  var scale = scaleParse("Daeolian");
+  print(scale.notes().map((e) => e.name()));
   print(scale.diatonicTriads().map((e) => e.name()));
-  print(scale.diatonicTetrads().map((e) => e.name()));
+  print(scale.diatonicSeventhChords().map((e) => e.name()));
 
 /*
   chords().forEach((element) {

@@ -291,6 +291,7 @@ extension ChordStructureMethods on ChordStructure {
     switch (this) {
       case ChordStructure.PowerChord:
         return "5";
+
       case ChordStructure.Minor:
         return "min";
       case ChordStructure.Major:
@@ -301,12 +302,14 @@ extension ChordStructureMethods on ChordStructure {
         return "aug";
       case ChordStructure.MajorFlatFifth:
         return "(♭5)";
+
       case ChordStructure.SusSecond:
         return "sus2";
       case ChordStructure.SusFourth:
         return "sus4";
       case ChordStructure.SusSecondSusFourth:
         return "sus2sus4";
+
       case ChordStructure.MajorSixth:
         return "6";
       case ChordStructure.MinorSixth:
@@ -315,6 +318,7 @@ extension ChordStructureMethods on ChordStructure {
         return "(♭6)";
       case ChordStructure.MinorFlatSixth:
         return "min(♭6)";
+
       case ChordStructure.DominantSeventh:
         return "7";
       case ChordStructure.MajorSeventh:
@@ -322,13 +326,13 @@ extension ChordStructureMethods on ChordStructure {
       case ChordStructure.MinorMajorSeventh:
         return "min(maj7)";
       case ChordStructure.MinorSeventh:
-        return "(♭7)";
+        return "min7";
       case ChordStructure.AugmentedMajorSeventh:
         return "aug(maj7)";
       case ChordStructure.AugmentedSeventh:
         return "aug7";
       case ChordStructure.HalfDiminishedSeventh:
-        return "m7(♭5)";
+        return "min7(♭5)";
       case ChordStructure.DiminishedSeventh:
         return "(o7)";
       case ChordStructure.DominantSeventhFlatFive:

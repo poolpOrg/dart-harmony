@@ -152,13 +152,13 @@ class Scale {
       var third = notes()[(i + 2) % (notes().length - 1)];
       var fifth = notes()[(i + 4) % (notes().length - 1)];
 
-      if (third.note.index < root.note.index) {
+      if (third.note.index < root.note.index || (i + 2) >= notes().length - 1) {
         third = Note(
             note: third.note,
             accidentals: third.accidentals,
             octave: third.octave + 1);
       }
-      if (fifth.note.index < root.note.index) {
+      if (fifth.note.index < root.note.index || (i + 4) >= notes().length - 1) {
         fifth = Note(
             note: fifth.note,
             accidentals: fifth.accidentals,
@@ -169,6 +169,7 @@ class Scale {
       structure.add(root.distance(root));
       structure.add(root.distance(third));
       structure.add(root.distance(fifth));
+
       ret.add(Chord(
           inversion: Interval.PerfectUnison,
           note: root,
@@ -178,7 +179,7 @@ class Scale {
     return ret;
   }
 
-  List<Chord> diatonicTetrads() {
+  List<Chord> diatonicSeventhChords() {
     List<Chord> ret = List<Chord>.empty(growable: true);
 
     for (var i = 0; i < notes().length - 1; i++) {
@@ -187,19 +188,20 @@ class Scale {
       var fifth = notes()[(i + 4) % (notes().length - 1)];
       var seventh = notes()[(i + 6) % (notes().length - 1)];
 
-      if (third.note.index < root.note.index) {
+      if (third.note.index < root.note.index || (i + 2) >= notes().length - 1) {
         third = Note(
             note: third.note,
             accidentals: third.accidentals,
             octave: third.octave + 1);
       }
-      if (fifth.note.index < root.note.index) {
+      if (fifth.note.index < root.note.index || (i + 4) >= notes().length - 1) {
         fifth = Note(
             note: fifth.note,
             accidentals: fifth.accidentals,
             octave: fifth.octave + 1);
       }
-      if (seventh.note.index < root.note.index) {
+      if (seventh.note.index < root.note.index ||
+          (i + 6) >= notes().length - 1) {
         seventh = Note(
             note: seventh.note,
             accidentals: seventh.accidentals,
@@ -212,7 +214,6 @@ class Scale {
       structure.add(root.distance(fifth));
       structure.add(root.distance(seventh));
 
-      print(structure);
       ret.add(Chord(
           inversion: Interval.PerfectUnison,
           note: root,
