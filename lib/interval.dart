@@ -45,114 +45,137 @@ enum Interval {
   DiminishedThirteenth,
   MinorThirteenth,
   MajorThirteenth,
-  AugmentedThirteenth
+  AugmentedThirteenth,
+  DiminishedFourteenth,
+  MinorFourteenth,
+  MajorFourteenth,
+  AugmentedFourteenth,
+  DiminishedFifteenth,
+  PerfectFifteenth,
+  AugmentedFifteenth,
 }
 
 extension IntervalExtension on Interval {
   String get name {
     switch (this) {
       case Interval.PerfectUnison:
-        return "P1";
+        return "1";
       case Interval.AugmentedUnison:
-        return "A1";
+        return "1aug";
 
       case Interval.DiminishedSecond:
-        return "d2";
+        return "2dim";
       case Interval.MinorSecond:
-        return "m2";
+        return "2min";
       case Interval.MajorSecond:
-        return "M2";
+        return "2maj";
       case Interval.AugmentedSecond:
-        return "A2";
+        return "2aug";
 
       case Interval.DiminishedThird:
-        return "d3";
+        return "3dim";
       case Interval.MinorThird:
-        return "m3";
+        return "3min";
       case Interval.MajorThird:
-        return "M3";
+        return "3maj";
       case Interval.AugmentedThird:
-        return "A3";
+        return "3aug";
 
       case Interval.DiminishedFourth:
-        return "d4";
+        return "4dim";
       case Interval.PerfectFourth:
-        return "P4";
+        return "4";
       case Interval.AugmentedFourth:
-        return "A4";
+        return "4aug";
 
       case Interval.DiminishedFifth:
-        return "d5";
+        return "5dim";
       case Interval.PerfectFifth:
-        return "P5";
+        return "5";
       case Interval.AugmentedFifth:
-        return "A5";
+        return "5aug";
 
       case Interval.DiminishedSixth:
-        return "d6";
+        return "6dim";
       case Interval.MinorSixth:
-        return "m6";
+        return "6min";
       case Interval.MajorSixth:
-        return "M6";
+        return "6maj";
       case Interval.AugmentedSixth:
-        return "A6";
+        return "6aug";
 
       case Interval.DiminishedSeventh:
-        return "d7";
+        return "7dim";
       case Interval.MinorSeventh:
-        return "m7";
+        return "7min";
       case Interval.MajorSeventh:
-        return "M7";
+        return "7maj";
       case Interval.AugmentedSeventh:
-        return "A7";
+        return "7aug";
 
       case Interval.DiminishedOctave:
-        return "d8";
+        return "8dim";
       case Interval.PerfectOctave:
-        return "P8";
+        return "8";
       case Interval.AugmentedOctave:
-        return "A8";
+        return "8aug";
 
       case Interval.DiminishedNinth:
-        return "d9";
+        return "9dim";
       case Interval.MinorNinth:
-        return "m9";
+        return "9min";
       case Interval.MajorNinth:
-        return "M9";
+        return "9maj";
       case Interval.AugmentedNinth:
-        return "A9";
+        return "9aug";
 
       case Interval.DiminishedTenth:
-        return "d10";
+        return "10dim";
       case Interval.MinorTenth:
-        return "m10";
+        return "10min";
       case Interval.MajorTenth:
-        return "M10";
+        return "10maj";
       case Interval.AugmentedTenth:
-        return "A10";
+        return "10aug";
 
       case Interval.DiminishedEleventh:
-        return "d11";
+        return "11dim";
       case Interval.PerfectEleventh:
-        return "P11";
+        return "11";
       case Interval.AugmentedEleventh:
-        return "A11";
+        return "11aug";
 
       case Interval.DiminishedTwelfth:
-        return "d12";
+        return "12dim";
       case Interval.PerfectTwelfth:
-        return "P12";
+        return "12";
       case Interval.AugmentedTwelfth:
-        return "A12";
+        return "12aug";
 
       case Interval.DiminishedThirteenth:
-        return "d13";
+        return "13dim";
       case Interval.MinorThirteenth:
-        return "m13";
+        return "13min";
       case Interval.MajorThirteenth:
-        return "M13";
+        return "13maj";
       case Interval.AugmentedThirteenth:
-        return "A13";
+        return "13aug";
+
+      case Interval.DiminishedFourteenth:
+        return "14dim";
+      case Interval.MinorFourteenth:
+        return "14min";
+      case Interval.MajorFourteenth:
+        return "14maj";
+      case Interval.AugmentedFourteenth:
+        return "14aug";
+
+      case Interval.DiminishedFifteenth:
+        return "15dim";
+      case Interval.PerfectFifteenth:
+        return "15";
+      case Interval.AugmentedFifteenth:
+        return "15aug";
     }
   }
 
@@ -260,6 +283,22 @@ extension IntervalExtension on Interval {
         return 12;
       case Interval.AugmentedThirteenth:
         return 12;
+
+      case Interval.DiminishedFourteenth:
+        return 13;
+      case Interval.MinorFourteenth:
+        return 13;
+      case Interval.MajorFourteenth:
+        return 13;
+      case Interval.AugmentedFourteenth:
+        return 13;
+
+      case Interval.DiminishedFifteenth:
+        return 14;
+      case Interval.PerfectFifteenth:
+        return 14;
+      case Interval.AugmentedFifteenth:
+        return 14;
     }
   }
 
@@ -367,7 +406,33 @@ extension IntervalExtension on Interval {
         return 21;
       case Interval.AugmentedThirteenth:
         return 22;
+
+      case Interval.DiminishedFourteenth:
+        return 21;
+      case Interval.MinorFourteenth:
+        return 22;
+      case Interval.MajorFourteenth:
+        return 23;
+      case Interval.AugmentedFourteenth:
+        return 24;
+
+      case Interval.DiminishedFifteenth:
+        return 23;
+      case Interval.PerfectFifteenth:
+        return 24;
+      case Interval.AugmentedFifteenth:
+        return 25;
     }
+  }
+
+  Interval invert() {
+    if (this == Interval.PerfectUnison) {
+      return Interval.PerfectOctave;
+    }
+    if (this == Interval.PerfectOctave) {
+      return Interval.PerfectUnison;
+    }
+    return lookupInterval(7 - (position % 7), 12 - (semitones % 12));
   }
 }
 
@@ -379,6 +444,15 @@ Interval lookupInterval(int position, int semitones) {
   for (var i = 0; i < Interval.values.length; i++) {
     if (Interval.values[i].position == position &&
         Interval.values[i].semitones == semitones) {
+      return Interval.values[i];
+    }
+  }
+  throw Exception("no such interval");
+}
+
+Interval intervalParse(String value) {
+  for (var i = 0; i < Interval.values.length; i++) {
+    if (Interval.values[i].name == value) {
       return Interval.values[i];
     }
   }

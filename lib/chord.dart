@@ -3,6 +3,8 @@
 import 'note.dart';
 import 'interval.dart';
 
+import 'package:collection/collection.dart';
+
 enum ChordStructure {
   PowerChord,
   Major,
@@ -410,7 +412,7 @@ class Chord {
 }
 
 Chord chordParse(String value) {
-  if (value.length == 0) {
+  if (value.isEmpty) {
     throw Exception("empty chord name");
   }
 
@@ -480,4 +482,14 @@ Chord chordParse(String value) {
 
 List<ChordStructure> chords() {
   return ChordStructure.values.toList();
+}
+
+ChordStructure chordFromStructure(List<Interval> structure) {
+  var _chords = chords();
+  for (var i = 0; i < _chords.length; i++) {
+    if (ListEquality().equals(_chords[i].intervals, structure)) {
+      return _chords[i];
+    }
+  }
+  throw Exception("unknown chord structure");
 }

@@ -46,48 +46,58 @@ class Note {
   }
 
   Note interval(Interval target) {
-    var targetInterval = target;
+    var targetInt = target;
 
-    // special case
-    if (targetInterval.position == note.position &&
-        targetInterval.semitones % 12 == 0) {
+    // special case, perfect octave
+    if (targetInt.position % 7 == 0 && targetInt.semitones % 12 == 0) {
       return Note(
           note: note,
           accidentals: accidentals,
-          octave: octave + targetInterval.semitones ~/ 12);
+          octave: octave + targetInt.semitones ~/ 12);
     }
 
-    var targetNatural = naturals()[
-        (note.position + targetInterval.position) % naturals().length];
-    var sourceSemitone = note.semitones + accidentals;
+    // first, locate the target natural
+    var targetNatural =
+        naturals()[(note.position + targetInt.position) % naturals().length];
 
-    // . print(targetNatural.position);
-    //  print(sourceSemitone);
+    // compute origin offset
+    var originOffset = note.semitones;
 
-    var targetOctave = octave + targetInterval.semitones ~/ 12;
+    // compute destination offset from interval
+    var destinationOffset = targetInt.semitones % 12;
+
+    // compute distance between targetNatural and destinationOffset
+    var distanceTarget =
+        targetNatural.semitones - ((originOffset + destinationOffset));
+
+    var targetAccidentals = accidentals - distanceTarget;
+
     if (targetNatural.position < note.position) {
-      targetOctave++;
+      targetAccidentals = targetAccidentals - 12;
     }
 
-    var targetSemitone = targetNatural.semitones + accidentals;
-    var targetAccidentals = accidentals;
-    if (targetInterval.semitones < note.semitones) {
-      targetSemitone += 12;
+    if (targetInt == Interval.AugmentedSeventh ||
+        targetInt == Interval.AugmentedFourteenth) {
+      targetAccidentals = targetAccidentals + 12;
     }
-
-    var targetDistance =
-        targetSemitone - (targetInterval.semitones % 12 + sourceSemitone);
-
-    //print(targetDistance);
-    targetAccidentals -= targetDistance;
-    //print(targetAccidentals);
+    if (targetInt == Interval.DiminishedOctave ||
+        targetInt == Interval.DiminishedFifteenth) {
+      targetAccidentals = targetAccidentals - 12;
+    }
 
     if (targetAccidentals < 0) {
-      targetAccidentals = -targetAccidentals;
-      targetAccidentals = targetAccidentals % 12;
-      targetAccidentals = -targetAccidentals;
-    } else if (targetAccidentals > 0) {
-      targetAccidentals = targetAccidentals % 12;
+      if (-targetAccidentals % 12 == 0) {
+        targetAccidentals = 0;
+      }
+    } else {
+      if (targetAccidentals % 12 == 0) {
+        targetAccidentals = 0;
+      }
+    }
+
+    var targetOctave = octave;
+    if (targetNatural.position < note.position) {
+      targetOctave++;
     }
 
     return Note(
@@ -120,13 +130,12 @@ class Note {
 }
 
 Note noteParse(String value) {
-  if (value.length == 0) {
+  if (value.isEmpty) {
     throw Exception("empty note name");
   }
 
   var natural = Natural.C;
   var octave = Octave.C4;
-  var accidentals = Accidental.Natural;
 
   var lastChar = value[value.length - 1];
   var parsedOctave = num.tryParse(value[value.length - 1]);
@@ -158,9 +167,9 @@ List<Note> notes() {
   List<Note> ret = List<Note>.empty(growable: true);
   Natural.values.forEach((e) {
     for (var i = 0; i < 8; i++) {
-      ret.add(noteParse("${e.name}♭${i}"));
-      ret.add(noteParse("${e.name}${i}"));
-      ret.add(noteParse("${e.name}♯${i}"));
+      ret.add(noteParse("${e.name}♭$i"));
+      ret.add(noteParse("${e.name}$i"));
+      ret.add(noteParse("${e.name}♯$i"));
     }
   });
   return ret;

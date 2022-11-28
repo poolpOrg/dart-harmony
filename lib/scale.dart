@@ -1,4 +1,5 @@
 import 'note.dart';
+import 'chord.dart';
 import 'interval.dart';
 
 enum ScaleStructure {
@@ -134,12 +135,12 @@ class Scale {
 
   const Scale({required this.note, required this.structure});
 
-  List<Note> notes() {
-    return List<Note>.from(structure.intervals.map((e) => note.interval(e)));
-  }
-
   String name() {
     return note.name() + structure.name;
+  }
+
+  List<Note> notes() {
+    return List<Note>.from(structure.intervals.map((e) => note.interval(e)));
   }
 }
 
@@ -163,7 +164,7 @@ Scale scaleParse(String value) {
   var scaleName = value.substring(noteEnd);
 
   ScaleStructure structure = ScaleStructure.Ionian;
-  if (scaleName.length != 0) {
+  if (scaleName.isNotEmpty) {
     var found = false;
     for (var i = 0; i < ScaleStructure.values.length; i++) {
       if (ScaleStructure.values[i].name == scaleName) {

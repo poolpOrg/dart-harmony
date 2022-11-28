@@ -9,12 +9,19 @@ void main(List<String> arguments) {
   var natural = naturalParse("C");
   //print(natural.name);
 
-  var note = noteParse("C0");
+  var note = noteParse(arguments.first);
   //print(note.name());
+  for (var i = 0; i < intervals().length; i++) {
+    //if (intervals()[i] == Interval.AugmentedSeventh) {
+    //intervals()[i] == Interval.DiminishedOctave) {
+    print("${intervals()[i].name}: ${note.interval(intervals()[i]).name()}");
+    //}
+  }
 
-  var chord = chordParse(arguments.first);
-  //print(chord.name());
+  //print(note.name());
+  //print(scale.diatonicTriads().map((e) => e.name()));
 
+/*
   chords().forEach((element) {
     var c = chordParse(note.name() + element.name);
     print(c.name());
@@ -24,4 +31,5 @@ void main(List<String> arguments) {
       print("\t${inversion.name()}");
     });
   });
+  */
 }
