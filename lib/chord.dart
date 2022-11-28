@@ -362,47 +362,13 @@ class Chord {
       {required this.note, required this.structure, required this.inversion});
 
   static List<ChordStructure> chords() {
-    return [
-      ChordStructure.PowerChord,
-      ChordStructure.Major,
-      ChordStructure.Minor,
-      ChordStructure.Diminished,
-      ChordStructure.Augmented,
-      ChordStructure.MajorFlatFifth,
-      ChordStructure.SusSecond,
-      ChordStructure.SusFourth,
-      ChordStructure.SusSecondSusFourth,
-      ChordStructure.MajorSixth,
-      ChordStructure.MinorSixth,
-      ChordStructure.MajorFlatSixth,
-      ChordStructure.MinorFlatSixth,
-      ChordStructure.DominantSeventh,
-      ChordStructure.MajorSeventh,
-      ChordStructure.MinorMajorSeventh,
-      ChordStructure.MinorSeventh,
-      ChordStructure.AugmentedMajorSeventh,
-      ChordStructure.AugmentedSeventh,
-      ChordStructure.HalfDiminishedSeventh,
-      ChordStructure.DiminishedSeventh,
-      ChordStructure.DominantSeventhFlatFive,
-      ChordStructure.DominantSeventhSusSecond,
-      ChordStructure.DominantSeventhSusFourth,
-      ChordStructure.DominantSeventhSusSecondSusFourth,
-      ChordStructure.MajorSeventhSusSecond,
-      ChordStructure.MajorSeventhSusFourth,
-      ChordStructure.MajorSeventhSusSecondSusFourth,
-    ];
+    return ChordStructure.values;
   }
-
-//  List<Note> notes(Note root) {
-//    return List<Note>.from(structure.map((e) => root.interval(e)));
-//  }
 
   String name() {
     if (inversion != Interval.PerfectUnison) {
       return "${note.natural()}${structure.name}/${note.interval(inversion).name()}";
     }
-
     return note.name() + structure.name;
   }
 

@@ -432,6 +432,12 @@ extension IntervalExtension on Interval {
     if (this == Interval.PerfectOctave) {
       return Interval.PerfectUnison;
     }
+    if (this == Interval.AugmentedSeventh) {
+      return Interval.DiminishedSecond;
+    }
+    if (this == Interval.DiminishedOctave) {
+      return Interval.AugmentedUnison;
+    }
     return lookupInterval(7 - (position % 7), 12 - (semitones % 12));
   }
 }

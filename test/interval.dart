@@ -182,4 +182,37 @@ void test_intervals() {
       25,
     ]);
   });
+
+  test('intervals_06', () {
+    expect(
+        intervals().sublist(0, intervals().length ~/ 2).map((e) => e.invert()),
+        [
+          Interval.PerfectOctave,
+          Interval.DiminishedOctave,
+          Interval.AugmentedSeventh,
+          Interval.MajorSeventh,
+          Interval.MinorSeventh,
+          Interval.DiminishedSeventh,
+          Interval.AugmentedSixth,
+          Interval.MajorSixth,
+          Interval.MinorSixth,
+          Interval.DiminishedSixth,
+          Interval.AugmentedFifth,
+          Interval.PerfectFifth,
+          Interval.DiminishedFifth,
+          Interval.AugmentedFourth,
+          Interval.PerfectFourth,
+          Interval.DiminishedFourth,
+          Interval.AugmentedThird,
+          Interval.MajorThird,
+          Interval.MinorThird,
+          Interval.DiminishedThird,
+          Interval.AugmentedSecond,
+          Interval.MajorSecond,
+          Interval.MinorSecond,
+          Interval.DiminishedSecond,
+          Interval.AugmentedUnison,
+          Interval.PerfectUnison,
+        ]);
+  });
 }

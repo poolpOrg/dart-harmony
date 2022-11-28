@@ -127,3 +127,7 @@ Octave octaveParse(String value) {
   }
   throw Exception("invalid octave");
 }
+
+List<Octave> octaves() {
+  return Octave.values;
+}

@@ -25,6 +25,10 @@ void main(List<String> arguments) {
   print(scale.diatonicTriads().map((e) => e.name()));
   print(scale.diatonicSeventhChords().map((e) => e.name()));
 
+  intervals().sublist(0, 25).forEach((e) {
+    print(e.name);
+    print(e.invert().name);
+  });
 /*
   chords().forEach((element) {
     var c = chordParse(note.name() + element.name);
