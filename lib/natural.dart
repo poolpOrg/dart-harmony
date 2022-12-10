@@ -18,8 +18,6 @@ enum Natural {
   };
   String get name => _nameMap[this]!;
 
-  int get position => _positionMap[this]!;
-
   static const _positionMap = {
     Natural.C: 0,
     Natural.D: 1,
@@ -29,8 +27,7 @@ enum Natural {
     Natural.A: 5,
     Natural.B: 6,
   };
-
-  int get semitones => _semitonesMap[this]!;
+  int get position => _positionMap[this]!;
 
   static const _semitonesMap = {
     Natural.C: 0,
@@ -41,6 +38,7 @@ enum Natural {
     Natural.A: 9,
     Natural.B: 11,
   };
+  int get semitones => _semitonesMap[this]!;
 }
 
 Natural naturalParse(String value) {
