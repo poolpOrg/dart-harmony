@@ -17,9 +17,7 @@ enum Natural {
     Natural.B: "B",
   };
   String get name => _nameMap[this]!;
-}
 
-extension NaturalExtension on Natural {
   int get position => _positionMap[this]!;
 
   static const _positionMap = {
