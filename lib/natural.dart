@@ -1,82 +1,57 @@
-enum Natural { C, D, E, F, G, A, B }
+enum Natural {
+  C,
+  D,
+  E,
+  F,
+  G,
+  A,
+  B;
+
+  static const _nameMap = {
+    Natural.C: "C",
+    Natural.D: "D",
+    Natural.E: "E",
+    Natural.F: "F",
+    Natural.G: "G",
+    Natural.A: "A",
+    Natural.B: "B",
+  };
+  String get name => _nameMap[this]!;
+}
 
 extension NaturalExtension on Natural {
-  String get name {
-    switch (this) {
-      case Natural.C:
-        return "C";
-      case Natural.D:
-        return "D";
-      case Natural.E:
-        return "E";
-      case Natural.F:
-        return "F";
-      case Natural.G:
-        return "G";
-      case Natural.A:
-        return "A";
-      case Natural.B:
-        return "B";
-    }
-  }
+  int get position => _positionMap[this]!;
 
-  int get position {
-    switch (this) {
-      case Natural.C:
-        return 0;
-      case Natural.D:
-        return 1;
-      case Natural.E:
-        return 2;
-      case Natural.F:
-        return 3;
-      case Natural.G:
-        return 4;
-      case Natural.A:
-        return 5;
-      case Natural.B:
-        return 6;
-    }
-  }
+  static const _positionMap = {
+    Natural.C: 0,
+    Natural.D: 1,
+    Natural.E: 2,
+    Natural.F: 3,
+    Natural.G: 4,
+    Natural.A: 5,
+    Natural.B: 6,
+  };
 
-  int get semitones {
-    switch (this) {
-      case Natural.C:
-        return 0;
-      case Natural.D:
-        return 2;
-      case Natural.E:
-        return 4;
-      case Natural.F:
-        return 5;
-      case Natural.G:
-        return 7;
-      case Natural.A:
-        return 9;
-      case Natural.B:
-        return 11;
-    }
-  }
+  int get semitones => _semitonesMap[this]!;
+
+  static const _semitonesMap = {
+    Natural.C: 0,
+    Natural.D: 2,
+    Natural.E: 4,
+    Natural.F: 5,
+    Natural.G: 7,
+    Natural.A: 9,
+    Natural.B: 11,
+  };
 }
 
 Natural naturalParse(String value) {
-  switch (value) {
-    case "C":
-      return Natural.C;
-    case "D":
-      return Natural.D;
-    case "E":
-      return Natural.E;
-    case "F":
-      return Natural.F;
-    case "G":
-      return Natural.G;
-    case "A":
-      return Natural.A;
-    case "B":
-      return Natural.B;
+  if (!Natural._nameMap.containsValue(value)) {
+    throw Exception("could not parse natural $value");
   }
-  throw Exception("could not parse natural $value");
+  return Natural._nameMap.entries
+      .firstWhere((element) => element.value == value)
+      .key;
 }
 
 List<Natural> naturals() {
