@@ -7,13 +7,11 @@ import 'package:dart_harmony/sound.dart';
 import 'package:dart_harmony/tuning.dart';
 
 void main(List<String> arguments) {
-  var sound = Sound(frequency: 440);
-  print(sound);
-  print(sound.frequency);
-  print(sound.harmonics(2).map((e) => e.frequency));
+  //var sound = Sound(frequency: 440);
+  //print(sound);
+  //print(sound.frequency);
+  //print(sound.harmonics(2).map((e) => e.frequency));
 
-  var tuning = Tuning.A440;
-  for (var i = 0; i < 13; i++) {
-    print(sound.frequency * tuning.r(i));
-  }
+  var tuner = Tuner.EqualTemperament;
+  print(tuner.frequency(Tuning.A432, noteParse(arguments[0])).frequency);
 }
