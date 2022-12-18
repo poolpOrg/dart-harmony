@@ -705,5 +705,6 @@ ChordStructure chordFromStructure(List<Interval> structure) {
       return _chords[i];
     }
   }
+  print(structure);
   throw Exception("unknown chord structure");
 }

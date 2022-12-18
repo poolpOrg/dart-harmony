@@ -1,5 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:dart_harmony/accidental.dart';
+import 'package:dart_harmony/natural.dart';
+
 import 'note.dart';
 import 'chord.dart';
 import 'octave.dart';
@@ -23,7 +26,6 @@ const Ionian = [
   Interval.PerfectFifth,
   Interval.MajorSixth,
   Interval.MajorSeventh,
-  Interval.PerfectOctave,
 ];
 
 const Dorian = [
@@ -34,7 +36,6 @@ const Dorian = [
   Interval.PerfectFifth,
   Interval.MajorSixth,
   Interval.MinorSeventh,
-  Interval.PerfectOctave,
 ];
 
 const Phrygian = [
@@ -45,7 +46,6 @@ const Phrygian = [
   Interval.PerfectFifth,
   Interval.MinorSixth,
   Interval.MinorSeventh,
-  Interval.PerfectOctave,
 ];
 
 const Lydian = [
@@ -56,7 +56,6 @@ const Lydian = [
   Interval.PerfectFifth,
   Interval.MajorSixth,
   Interval.MajorSeventh,
-  Interval.PerfectOctave,
 ];
 
 const Mixolydian = [
@@ -67,7 +66,6 @@ const Mixolydian = [
   Interval.PerfectFifth,
   Interval.MajorSixth,
   Interval.MinorSeventh,
-  Interval.PerfectOctave,
 ];
 
 const Aeolian = [
@@ -78,7 +76,6 @@ const Aeolian = [
   Interval.PerfectFifth,
   Interval.MinorSixth,
   Interval.MinorSeventh,
-  Interval.PerfectOctave,
 ];
 
 const Locrian = [
@@ -89,7 +86,6 @@ const Locrian = [
   Interval.DiminishedFifth,
   Interval.MinorSixth,
   Interval.MinorSeventh,
-  Interval.PerfectOctave,
 ];
 
 extension ScaleStructureMethods on ScaleStructure {
@@ -149,18 +145,18 @@ class Scale {
   List<Chord> diatonicTriads() {
     List<Chord> ret = List<Chord>.empty(growable: true);
 
-    for (var i = 0; i < notes().length - 1; i++) {
+    for (var i = 0; i < notes().length; i++) {
       var root = notes()[i];
-      var third = notes()[(i + 2) % (notes().length - 1)];
-      var fifth = notes()[(i + 4) % (notes().length - 1)];
+      var third = notes()[(i + 2) % (notes().length)];
+      var fifth = notes()[(i + 4) % (notes().length)];
 
-      if (third.note.index < root.note.index || (i + 2) >= notes().length - 1) {
+      if (third.note.index < root.note.index || (i + 2) >= notes().length) {
         third = Note(
             note: third.note,
             accidentals: third.accidentals,
             octave: third.octave + 1);
       }
-      if (fifth.note.index < root.note.index || (i + 4) >= notes().length - 1) {
+      if (fifth.note.index < root.note.index || (i + 4) >= notes().length) {
         fifth = Note(
             note: fifth.note,
             accidentals: fifth.accidentals,
@@ -184,26 +180,25 @@ class Scale {
   List<Chord> diatonicSeventhChords() {
     List<Chord> ret = List<Chord>.empty(growable: true);
 
-    for (var i = 0; i < notes().length - 1; i++) {
+    for (var i = 0; i < notes().length; i++) {
       var root = notes()[i];
-      var third = notes()[(i + 2) % (notes().length - 1)];
-      var fifth = notes()[(i + 4) % (notes().length - 1)];
-      var seventh = notes()[(i + 6) % (notes().length - 1)];
+      var third = notes()[(i + 2) % (notes().length)];
+      var fifth = notes()[(i + 4) % (notes().length)];
+      var seventh = notes()[(i + 6) % (notes().length)];
 
-      if (third.note.index < root.note.index || (i + 2) >= notes().length - 1) {
+      if (third.note.index < root.note.index || (i + 2) >= notes().length) {
         third = Note(
             note: third.note,
             accidentals: third.accidentals,
             octave: third.octave + 1);
       }
-      if (fifth.note.index < root.note.index || (i + 4) >= notes().length - 1) {
+      if (fifth.note.index < root.note.index || (i + 4) >= notes().length) {
         fifth = Note(
             note: fifth.note,
             accidentals: fifth.accidentals,
             octave: fifth.octave + 1);
       }
-      if (seventh.note.index < root.note.index ||
-          (i + 6) >= notes().length - 1) {
+      if (seventh.note.index < root.note.index || (i + 6) >= notes().length) {
         seventh = Note(
             note: seventh.note,
             accidentals: seventh.accidentals,
@@ -273,4 +268,27 @@ Scale scaleParse(String value) {
 
 List<ScaleStructure> scales() {
   return ScaleStructure.values.toList();
+}
+
+List<Note> ascendingChromaticScale() {
+  List<Note> notes = List<Note>.empty(growable: true);
+  for (var i = 0; i < naturals().length; i++) {
+    notes.add(noteParse(naturals()[i].name));
+    if (naturals()[i].name != 'E' && naturals()[i].name != 'B') {
+      notes.add(noteParse("${naturals()[i].name}#"));
+    }
+  }
+  return notes;
+}
+
+List<Note> descendingChromaticScale() {
+  List<Note> notes = List<Note>.empty(growable: true);
+  for (var i = 0; i < naturals().length; i++) {
+    notes.add(noteParse(naturals()[naturals().length - i - 1].name));
+    if (naturals()[naturals().length - i - 1].name != 'C' &&
+        naturals()[naturals().length - i - 1].name != 'F') {
+      notes.add(noteParse("${naturals()[naturals().length - i - 1].name}b"));
+    }
+  }
+  return notes;
 }

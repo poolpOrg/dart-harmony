@@ -3,46 +3,17 @@ import 'package:dart_harmony/note.dart';
 import 'package:dart_harmony/interval.dart';
 import 'package:dart_harmony/scale.dart';
 import 'package:dart_harmony/chord.dart';
+import 'package:dart_harmony/sound.dart';
+import 'package:dart_harmony/tuning.dart';
 
 void main(List<String> arguments) {
-  //print(Natural.naturals().map((e) => e.name));
-  var natural = naturalParse(arguments.first);
-  //print(natural.name);
+  var sound = Sound(frequency: 440);
+  print(sound);
+  print(sound.frequency);
+  print(sound.harmonics(2).map((e) => e.frequency));
 
-  var note = noteParse(arguments.first);
-  //print(note.name());
-  for (var i = 0; i < intervals().length; i++) {
-    //if (intervals()[i] == Interval.AugmentedSeventh) {
-    //intervals()[i] == Interval.DiminishedOctave) {
-    //print(
-    //    "${intervals()[i].name}: ${note.interval(intervals()[i]).name(showOctave: true)}");
-    //}
+  var tuning = Tuning.A440;
+  for (var i = 0; i < 13; i++) {
+    print(sound.frequency * tuning.r(i));
   }
-
-  //print(note.name());
-  var scale = scaleParse("${note.name()}");
-  print(scale.name());
-  print(scale.notes().map((e) => e.name()));
-  print(scale.diatonicTriads().map((e) => e.name()));
-  print(scale.diatonicSeventhChords().map((e) => e.name()));
-  print("");
-
-  var f = scaleParse("Ddorian");
-  print(f.name());
-  print(f.notes().map((e) => e.name()));
-  print(f.diatonicTriads().map((e) => e.name()));
-  print(f.diatonicSeventhChords().map((e) => e.name()));
-  print("");
-
-/*
-  chords().forEach((element) {
-    var c = chordParse(note.name() + element.name);
-    print(c.name());
-    c.notes().sublist(1).forEach((noteName) {
-      var inversion =
-          chordParse(note.name() + element.name + "/" + noteName.name());
-      print("\t${inversion.name()}");
-    });
-  });
-  */
 }
