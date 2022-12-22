@@ -13,5 +13,5 @@ void main(List<String> arguments) {
   //print(sound.harmonics(2).map((e) => e.frequency));
 
   var tuner = Tuner.EqualTemperament;
-  print(tuner.frequency(Tuning.A432, noteParse(arguments[0])).frequency);
+  print(tuner.frequency(Tuning.A440, noteParse(arguments[0])).frequency);
 }
